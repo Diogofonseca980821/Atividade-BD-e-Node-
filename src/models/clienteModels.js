@@ -10,12 +10,33 @@ const clienteModel = {
         try {
             const pool = await getConnetion()
 
-            //comando para buscar todos os dados dos clientes
+           
             let querySQL = "SELECT * FROM clientes"
 
             const result =  await pool.request().query(querySQL)
+
+            return result.recordset; 
         } catch (error) {
+            console.error('Erro ao buscar os clientes: ' , error)
+            throw error
+        }
+    },
+
+    inserirClientes: async (nomeClientes , cpfClientes ) =>{
+        try {
+            const pool = await getConnetion()  // conectando 
+
+            let querySQL = 'INSERT INTO clientes (nomeCliente , cpfClientes ) VALUES (@nomeCliente , @cpfClientes)'
             
+            await pool.request()
+            .input('nomeCliente' , sql.VarChar(100), nomeClientes)
+            .input('nomeCliente' , sql.Decimal(10,2) , cpfClientes)
+            query (querySQL)
+
+
+            
+        } catch (error) {
+            console
         }
     }
 }

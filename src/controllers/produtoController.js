@@ -48,7 +48,7 @@ const produtoController = {
         } catch (error) {
             console.error('Erro ao cadastrar produto:', error)
             res.status(500).json({
-                error: 'Erro ao cadastrar produto'
+                error: ('Erro ao cadastrar produto!' , error)
             })
         }
     }

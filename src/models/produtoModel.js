@@ -12,7 +12,7 @@ const produtoModel = { //objeto produtoModel
 
             const result = await pool.request().query(querySQL)
 
-            return result.recordset; //retorna uma lista nao sei doq kkkkkkkkkkk
+            return result.recordset; //retorna uma lista 
         } catch (error) {
             console.error('Erro ao buscar produtos:' , error)
             //passar o erro pro controller, ele que tem que ficar vendo os erros
@@ -42,6 +42,7 @@ const produtoModel = { //objeto produtoModel
     }
 
 };
+
 
 module.exports = {
     produtoModel
