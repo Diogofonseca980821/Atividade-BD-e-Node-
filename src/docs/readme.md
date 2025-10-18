@@ -25,7 +25,7 @@
 ```
 
 ## clientes 
-## testekk
+
 
 #### GET/Clientes 
 - **descrição**: Obtém uma  lista de produtos 
