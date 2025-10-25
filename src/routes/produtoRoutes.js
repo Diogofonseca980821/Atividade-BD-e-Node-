@@ -8,6 +8,7 @@ router.get('/produtos', produtoController.listarProdutos)
 //POST /produtos -> criar um novo produto
 router.post('/produtos', produtoController.criarProduto)
 
+router.put ('/produtos' , produtoController.atulizarProduto);
 // ao exportar temos que dar um nome 
 module.exports = {
     produtoRoutes: router
