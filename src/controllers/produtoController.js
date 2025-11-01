@@ -54,6 +54,72 @@ const produtoController = {
     }
 }
 
+atualizarProduto: async (req, res) =>{
+        try {
+            const {idProduto} = req.params;
+            const { nomeProduto, precoproduto} = req.body;
+
+            if (idProduto.length != 36) {
+                return res.status(400).json({erros: `id do produto invalido!`});
+            }
+
+            const produto = await produtoModel.buscarUm(idProduto);
+
+            if(!produto || produto.length !==1 ){
+                return res.status(404).json({erro: 'Produto nao encontrado'});
+
+            }
+
+            const produtoAtual = produto[0];
+            const nomeAtualizado = nomeProduto ?? produtoAtual. 
+            nomeProduto;
+             const precoAtualizado = precoproduto ?? produtoAtual.
+            precoproduto;
+
+            await produtoModel.atualizarProduto(idProduto, nomeAtualizado, precoAtualizado);
+
+            res.status(200).json({message: "produto atualizado com sucesso!"});
+
+            
+        } catch (error) {
+            console.error('erro ao atualizar produto:' (error));
+            res.status(500).json({erro: 'Erro inaterno no servidor ao atualizar o produto!'});
+        }
+    }
+    
+    
+    deletarProduto: async (req, res) => {
+        try {
+             const {idProduto} = req.params;
+            const { nomeProduto, precoproduto} = req.body;
+
+            if (idProduto.length != 36) {
+                return res.status(400).json({erros: `id do produto invalido!`});
+            }
+
+            const produto = await produtoModel.buscarUm(idProduto);
+
+            if(!produto || produto.length !==1 ){
+                return res.status(404).json({erro: 'Produto nao encontrado'});
+
+            }
+
+            const produtoAtual = produto[0];
+            const nomeAtualizado = nomeProduto ?? produtoAtual. 
+            nomeProduto;
+             const precoAtualizado = precoproduto ?? produtoAtual.
+            precoproduto;
+
+            await produtoModel.atualizarProduto(idProduto, nomeAtualizado, precoAtualizado);
+
+            res.status(200).json({message: "produto deletado com sucesso!"});
+
+        } catch (error) {
+            console.error('Erro ao deletar o produto: ', error);
+            res.status(500).json({erro: 'Erro interno no servidor ao deletar o produto!'});
+            
+        }
+    }
 module.exports = {
     produtoController
 }

@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const { produtoRoutes } = require("./src/routes/produtoRoutes")
 const {clieteRoutes } = require ("./src/controllers/clientesControllers")
-const PORT = 8081
+const PORT = 80
 
 app.use(express.json())
 
