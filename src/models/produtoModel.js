@@ -88,27 +88,25 @@ const produtoModel = { //objeto produtoModel
 
         }
 
+    },
+    deletarProduto: async (idProduto) => {
+        try {
+            const pool = await getConnetion();
+            const querySQL = `DELETE FROM  produtos WHERE idProduto = @idProduto`
+
+            await pool.request()
+                .input("idProduto", sql.UniqueIdentifier, idProduto)
+                .query(querySQL)
+
+        } catch (error) {
+            console.error('Erro ao deletar o produto: ', error);
+            throw error;
+        }
     }
-
-
-
 
 };
 
-deletarProduto: async (idProduto) => {
-    try {
-        const pool = await getConnetion();
-        const querySQL = `DELETE FROM  produtos WHERE idProduto = @idProduto`
 
-        await pool.request()
-            .input("idProduto", sql.UniqueIdentifier, idProduto)
-            .query(querySQL)
-
-    } catch (error) {
-        console.error('Erro ao deletar o produto: ', error);
-        throw error;
-    }
-}
 module.exports = {
     produtoModel
 }
