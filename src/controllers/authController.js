@@ -12,10 +12,10 @@ const authController = {
             if (emailCliente == undefined || senhaCliente == undefined) {
 
                 return res.status(400).json({ erro: "Email e senha são obrigatórios!" });
-            }
+            };
             const result = await clienteModel.buscarPorEmail(emailCliente);
             if (result.lenght == 0) {
-                return res.status(401).json({ "Email são encontrado!"});
+                return res.status(401).json({ error: "Email são encontrado!"});
             }
 
             const cliente = result[0];
@@ -32,7 +32,7 @@ const authController = {
                 tipoUsuario: 'cliente'
             };
 
-            const token = jwt.sign(payload , process.env.JWT_SECRET{
+            const token = jwt.sign(payload , process.env.JWT_SECRET,{
                 expiresIn: process.env.JWT_EXPIRES_IN
             });
 
