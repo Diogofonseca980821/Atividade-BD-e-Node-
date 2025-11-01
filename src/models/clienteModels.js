@@ -6,14 +6,17 @@ const { sql, getConnetion} =  require("../config/db")
 // objeto clienteModel
 const clienteModel = {
 
-    buscarTodos: async () => { 
+    buscarporEmail: async (emailCliente) => { 
         try {
             const pool = await getConnetion()
 
            
-            let querySQL = "SELECT * FROM clientes"
+            let querySQL = "SELECT * FROM clientes WHERE emailcliente = @emailCliente;";
 
-            const result =  await pool.request().query(querySQL)
+            const result =  await pool
+            .request()
+            .input("emailCliente", sql.VarChar(200) , emailCliente)
+            .query(querySQL); 
 
             return result.recordset; 
         } catch (error) {
