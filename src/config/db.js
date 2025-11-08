@@ -12,7 +12,7 @@ const CONFIG = {
     }
 }
 
-async function getConnetion() {
+async function getConnection() {
     try {
         const pool = await sql.connect(CONFIG)
         return pool //retornar um conjunto de conexoes
@@ -32,5 +32,5 @@ async function getConnetion() {
 
 module.exports = {
     sql,
-    getConnetion
+    getConnection
 }

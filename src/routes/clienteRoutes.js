@@ -1,14 +1,14 @@
-const express = require ('express')
-const router = express.Router()
-const { clienteController } = require ('../controllers')
- const {produtoRoutes} = require('./produtoRoutes')
+const express = require('express');
+const router = express.Router();
+const { clientesControllers } = require('../controllers/clientesController');
+const { verify } = require("../middlewares/authMiddlewares");
+const { authController } = require("../controllers/authController");
+
+router.post("/clientes/login", authController.clienteLogin);
 
 // Get Clientes -> listar clientes 
- router.get('/clientes', clienteController.listarClientes)
+router.get('/clientes', verify.cliente, clientesControllers.listarClientes);
 // Post Clientes -> Criar um novo cliente
-router.post('/clientes' , clienteController. criarProduto)
+router.post('/clientes', clientesControllers.criarCliente);
 // ao exportar temos que dar um nome 
-module.exports = {
-    produtoRoutes : router
-    
-}
+module.exports = { clienteRoutes: router }
