@@ -1,7 +1,7 @@
 const sql = require('mssql')
 
 const CONFIG = {
-    user:process.env.USER_DB,
+    user: process.env.USER_DB,
     password: process.env.PASSWORD_DB,
     server: process.env.SERVER_DB,
     database: process.env.DATABASE_DB,
@@ -21,14 +21,16 @@ async function getConnection() {
     }
 }
 
-// (async () => {
-//     try {
-//         const pool = await getConnetion()
-//         console.log('Conexao estabelecida com sucesso!')
-//     } catch (error) {
-//         console.error('Erro ao estabelecer conexao:', error)
-//     }
-// })()
+(async () => {
+    try {
+        const pool = await getConnection();
+        if (pool) {
+            console.log('Conexao estabelecida com sucesso!')
+        }
+    } catch (error) {
+        console.error('Erro ao estabelecer conexao:', error)
+    }
+})()
 
 module.exports = {
     sql,

@@ -1,12 +1,12 @@
 // importar a conexao com o banco de dados e o tipo de dados SQL
 //utilizando descontruçao
-const { sql, getConnetion } = require("../config/db")
+const { sql, getConnection } = require("../config/db")
 
 const produtoModel = { //objeto produtoModel
     //metodo
     buscarTodos: async () => {
         try {
-            const pool = await getConnetion() //coletando uma funçao
+            const pool = await getConnection() //coletando uma funçao
 
             let querySQL = "SELECT * FROM Produtos"//comando para buscar todos os dados no DB SQL
 
@@ -23,7 +23,7 @@ const produtoModel = { //objeto produtoModel
     buscarUm: async (idProduto) => {
         try {
 
-            const pool = await getConnetion();
+            const pool = await getConnection();
 
             const querySQL = 'SELECT * FROM  Produtos WHERE idProduto = @idProduto';
 
@@ -46,7 +46,7 @@ const produtoModel = { //objeto produtoModel
 
     inserirProduto: async (nomeProduto, precoProduto) => {
         try {
-            const pool = await getConnetion() //pegando uma conexao 
+            const pool = await getConnection() //pegando uma conexao 
 
             let querySQL = 'INSERT INTO produtos (nomeProduto, precoProduto) VALUES (@nomeProduto, @precoProduto)';
 
@@ -68,7 +68,7 @@ const produtoModel = { //objeto produtoModel
 
     atualizarProduto: async (idProduto, nomeProduto, precoProduto) => {
         try {
-            const pool = await getConnetion
+            const pool = await getConnection
             const querySQL = `
             UPDATE Produtos 
             SET nomeProduto = @nomeProduto
@@ -91,7 +91,7 @@ const produtoModel = { //objeto produtoModel
     },
     deletarProduto: async (idProduto) => {
         try {
-            const pool = await getConnetion();
+            const pool = await getConnection();
             const querySQL = `DELETE FROM  produtos WHERE idProduto = @idProduto`
 
             await pool.request()
