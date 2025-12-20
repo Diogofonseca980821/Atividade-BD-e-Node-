@@ -1,10 +1,10 @@
 const sql = require('mssql')
 
 const CONFIG = {
-    user: 'sa',
-    password: '123456789',
-    server: 'localhost',
-    database: 'lojaDB',
+    user:process.env.USER_DB,
+    password: process.env.PASSWORD_DB,
+    server: process.env.SERVER_DB,
+    database: process.env.DATABASE_DB,
     //ignora o erro de certificado autoassinado
     options: {
         encrypt: true,
